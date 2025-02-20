@@ -93,7 +93,9 @@ To use LLMSELECTOR for your own compound AI systems and tasks, it is as easy as 
 - Create your task: create a DataLoader object similar to these in ```data_utils```
 
 
-- Invoke LLMSELECTOR: You can simply use LLMSELECTOR by ```Optimizer.optimize(train_df, Metric('em'), your_compound_system)
+- Invoke LLMSELECTOR: You can simply use LLMSELECTOR by 
+
+```Optimizer.optimize(train_df, Metric('em'), your_compound_system)
 ```
 
 Note that you will need to set up API keys for your own systems. To do so, you can simply use 
@@ -130,8 +132,8 @@ If you find LLMSELECTOR useful, we would appreciate if you can please cite our w
 ```
 @article{chen2025llmselector,
   title={Optimizing Model Selection for Compound AI Systems},
-  author={Chen, Lingjiao and Zaharia, Matei and Zou, James},
-  journal={arXiv preprint arXiv:2305.05176},
+  author={Chen, Lingjiao and Davis, Jared and Hanin, Boris and Bailis, Peter and Zaharia, Matei and Zou, James and Stoica, Ion},
+  journal={arXiv preprint},
   year={2025}
 }
 ```
