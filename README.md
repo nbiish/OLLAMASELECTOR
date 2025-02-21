@@ -1,13 +1,28 @@
-# 🎓 LLMSELECTOR: Optimizing Model Selection for Compound AI Systems
+# 🎓 LLMSELECTOR: Which models to use for your compound AI systems?
+
+Researchers and developers are increasingly invoking multiple LLM calls in a compound AI system to solve complex tasks. But which LLM should one select for each call? 
+
+LLMSELECTOR is a framework that automatically optimizes model selection for compound AI systems!
+
+TLDR: You only need to design your compound system's workflow, and selecting which LLM to use is on LLMSELECTOR.
+
+## 🚀 What does LLMSELECTOR offer?
 
 
-LLMSELECTOR is a framework designed for optimizing  _model selection of compound AI systems_.
+<p align="center">
+  <img align="center" src="asset/intro.png" width="800px" />
+</p>
+<p align="left">
+  <b>Figure 1:</b> Comparison of using any fixed model and LLMSELECTOR for different compound AI systems. We find that, perhaps surprisingly, allocating different models to different modules can improve the overall performance by 5-70%.
+</p>
 
-## 🚀 What is LLMSELECTOR?
+Compound AI systems that involve multiple LLM calls are widely studied and developed in academy and industry. But does calling different LLMs in these systems make a difference? As suggested in Figure 1, the difference can be significant, and no LLM is the universally best choice. This leads to an important question: which LLM should be selected for each call in a compound system? The search space is exponential and exhaustive search is cumbersome.  
 
-Researchers and developers are increasingly invoking multiple LLM calls in a compound AI system to solve complex tasks. But which LLM should be selected for each call? LLMSELECTOR is a framework that simplifies and optimizes model selection for compound systems seamlessly. In particular, it offers a programming model to build compound AI systems involving multiple LLM calls, and an optimized engine to select which models to use for different modules in these systems. We provide a few examples to show how to use LLMSELECTOR. 
+LLMSELECTOR automates LLM selection in compound AI systems. As shown in Figure 1, LLMSELECTOR offers substantial performance gains on popular compound systems (such as self-refine and multi-agent-debate): perhaps surprisingly, it can offer 5-70% performance improvement over using any fixed LLMs for all modules in a compound system.
 
-## 💻 How to Use LLESELECTOR?
+Here, we provide a tutorial on how to use LLMSELECTOR, including the installation, a few examples, and guidance on how to extend it for customized compound AI systems. 
+
+## 💻 How to Use LLMSELECTOR?
 #### 🔧 Installation
 You can install LLMSELECTOR by running the following commands:
 
@@ -117,9 +132,9 @@ If you are interested in contributing, we would also be happy to coordinate on o
 ## 📣 Updates & Changelog
 
 
-### 🔹 2025.02.27 - The project is alive now!
+### 🔹 2025.02.21 - The project is alive now!
 
-  - ✅ Added the codebase, relevant examples, and demos
+  - ✅ Release the codebase, relevant examples, and demos
 
     
 ## 🎯 Reference
