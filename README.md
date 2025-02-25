@@ -146,7 +146,7 @@ If you find LLMSELECTOR useful, we would appreciate if you can please cite our w
 @article{chen2025llmselector,
   title={Optimizing Model Selection for Compound AI Systems},
   author={Chen, Lingjiao and Davis, Jared and Hanin, Boris and Bailis, Peter and Zaharia, Matei and Zou, James and Stoica, Ion},
-  journal={arXiv preprint},
+  journal={arXiv},
   year={2025}
 }
 ```

@@ -44,7 +44,7 @@ class SelfRefine(CompoundAI):
     def __init__(self,
                  description=DESCRIPTION_SELFREFINE,
                 ):
-        super().__init__(description=DESCRIPTION_SELFREFINE)
+        super().__init__(description=description)
         self.create_pipeline(pipeline= self._get_pipeline())
         pass
         

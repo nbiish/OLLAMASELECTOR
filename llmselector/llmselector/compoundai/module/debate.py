@@ -1,31 +1,20 @@
 from .module import Module, DEFAULT_MODEL
 from ..llm import Get_Generate
+from ..compoundai import CompoundAI
 import re
 from collections import Counter
-
 DESCRIPTION_DEBATE = '''This compound AI system uses 6 modules to solve a question. The module 0, module 1, and module 2 generate initial answers respectively. Next, module 3, module 4, and module 5 debates with each other to update their answer based on the answer from the first three modules. Finally, a majority vote is taken over the updated answers to generate the ultimate answer to the original question.
-'''
-
-PROMPT_TEMPLATE_INITDEBATE='''Given the chess game {query}, give one valid destination square for the chess piece at the end of the game. State the destination square in the form (X), where X follows the regex [a-h][1-8], for example (e5). Give a one line explanation of why your destination square is a valid move.
 '''
 
 PROMPT_TEMPLATE_DEBATE='''[User Question]:{query}
 [Your Response]: {response}
-[Instruction]: Here are destination square suggestions from other agents: {other_responses}
+[Instruction]: These are the solutions to the question from other agents: {other_responses}
 
-Can you double check that your destination square is a valid move? Check the valid move justifications from other agents. State your final answer in the form (X), where X follows the regex [a-h][1-8], for example (e5).
+Using the reasoning from other agents as additional advice, can you give an updated answer? Examine your solution and that of the other agents. Then state your final answer concisely at the end in the form (X), for example (hello world).
 '''
-
-PROMPT_TEMPLATE_INITDEBATE='''For the following in-progress chess game, please complete the notation for the last shown move by filling in the destination square. State the destination square in the form (X), where X follows the regex [a-h][1-8], for example (e5). Give a one line explanation of why your destination square is a valid move.
-[chess game]: {query}
-[your answer]:
-'''
-
-
-PROMPT_TEMPLATE_INITDEBATE='''Given this in-progress chess game {query}, generate one valid destination square for the chess piece at the end of the game. State the destination square in the form (X), where X follows the regex [a-h][1-8], for example (e5). Then give a one-sentence explanation.
-'''
-
-PROMPT_TEMPLATE_INITDEBATE='''Given this in-progress chess game {query}, generate one valid destination square for the chess piece at the end of the game. Give a one-sentence analysis. Then state the destination square in the form (X), where X follows the regex [a-h][1-8], for example (e5).
+PROMPT_TEMPLATE_INITDEBATE='''Please answer the following question.
+[Question]: {query} 
+[Instruction]: Format your final answer concisely as (X), e.g., (hello world).
 '''
 
 # Classes for debate
@@ -101,4 +90,23 @@ def extract_ans(text,regex = r'\([a-h][1-8]\)',remove_left=1,remove_right=1):
     return f'{matches[-1][remove_left:len1-remove_right]}'
     
     return f'{matches[-1][remove_left:remove_right]}' if matches else '()'
-    
+
+class MultiAgentDebate(CompoundAI):
+    def __init__(self,
+                 description=DESCRIPTION_DEBATE,
+                ):
+        super().__init__(description=description)
+        self.create_pipeline(pipeline= self._get_pipeline())
+        pass
+        
+    def _get_pipeline(self):
+        pipeline = [["query",0],
+                           [InitDebator(add_space=0,prompt_template_initdebate=PROMPT_TEMPLATE_INITDEBATE),[0]],
+                           [InitDebator(add_space=1,prompt_template_initdebate=PROMPT_TEMPLATE_INITDEBATE),[0]],
+                           [InitDebator(add_space=2,prompt_template_initdebate=PROMPT_TEMPLATE_INITDEBATE),[0]],
+                           [Debator(prompt_template_debate=PROMPT_TEMPLATE_DEBATE),[0,1,2,3]],
+                           [Debator(prompt_template_debate=PROMPT_TEMPLATE_DEBATE),[0,2,1,3]],
+                           [Debator(prompt_template_debate=PROMPT_TEMPLATE_DEBATE),[0,3,1,2]],
+                           [Merge(regex=r'\(.*?\)'),[4,5,6]],
+                           ]
+        return pipeline
