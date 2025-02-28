@@ -1,5 +1,7 @@
 # 🎓 LLMSELECTOR: Which models to use for your compound AI systems?
 
+[Original Repository](https://github.com/LLMSELECTOR/LLMSELECTOR)
+
 Researchers and developers are increasingly invoking multiple LLM calls in a compound AI system to solve complex tasks. But which LLM should one select for each call? 
 
 LLMSELECTOR is a framework that automatically optimizes model selection for compound AI systems!
