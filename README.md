@@ -1,30 +1,32 @@
-# 🎓 LLMSELECTOR: Which models to use for your compound AI systems?
+# 🎓 OLLAMASELECTOR: Which models to use for your compound AI systems?
+
+## [OLLAMASELECTOR: Original Repository](https://github.com/LLMSELECTOR/LLMSELECTOR)
 
 Researchers and developers are increasingly invoking multiple LLM calls in a compound AI system to solve complex tasks. But which LLM should one select for each call? 
 
-LLMSELECTOR is a framework that automatically optimizes model selection for compound AI systems!
+OLLAMASELECTOR is a framework that automatically optimizes model selection for compound AI systems!
 
-TLDR: You only need to design your compound system's workflow, and selecting which LLM to use is on LLMSELECTOR.
+TLDR: You only need to design your compound system's workflow, and selecting which LLM to use is on OLLAMASELECTOR.
 
-## 🚀 What does LLMSELECTOR offer?
+## 🚀 What does OLLAMASELECTOR offer?
 
 
 <p align="center">
   <img align="center" src="asset/intro.png" width="800px" />
 </p>
 <p align="left">
-  <b>Figure 1:</b> Comparison of using any fixed model and LLMSELECTOR for different compound AI systems. We find that, perhaps surprisingly, allocating different models to different modules can improve the overall performance by 5-70%.
+  <b>Figure 1:</b> Comparison of using any fixed model and OLLAMASELECTOR for different compound AI systems. We find that, perhaps surprisingly, allocating different models to different modules can improve the overall performance by 5-70%.
 </p>
 
 Compound AI systems that involve multiple LLM calls are widely studied and developed in academy and industry. But does calling different LLMs in these systems make a difference? As suggested in Figure 1, the difference can be significant, and no LLM is the universally best choice. This leads to an important question: which LLM should be selected for each call in a compound system? The search space is exponential and exhaustive search is cumbersome.  
 
-LLMSELECTOR automates LLM selection in compound AI systems. As shown in Figure 1, LLMSELECTOR offers substantial performance gains on popular compound systems (such as self-refine and multi-agent-debate): perhaps surprisingly, it can offer 5-70% performance improvement over using any fixed LLMs for all modules in a compound system.
+OLLAMASELECTOR automates LLM selection in compound AI systems. As shown in Figure 1, OLLAMASELECTOR offers substantial performance gains on popular compound systems (such as self-refine and multi-agent-debate): perhaps surprisingly, it can offer 5-70% performance improvement over using any fixed LLMs for all modules in a compound system.
 
-Here, we provide a tutorial on how to use LLMSELECTOR, including the installation, a few examples, and guidance on how to extend it for customized compound AI systems. 
+Here, we provide a tutorial on how to use OLLAMASELECTOR, including the installation, a few examples, and guidance on how to extend it for customized compound AI systems. 
 
-## 💻 How to Use LLMSELECTOR?
+## 💻 How to Use OLLAMASELECTOR?
 #### 🔧 Installation
-You can install LLMSELECTOR by running the following commands:
+You can install OLLAMASELECTOR by running the following commands:
 
 ```
 git clone https://github.com/LLMSELECTOR/LLMSELECTOR
@@ -77,23 +79,23 @@ The expected output is
 | gemini-1.5-pro           | 0.866667   |
 
 
-Now, let us use LLMSELECTOR to optimize the system.
+Now, let us use OLLAMASELECTOR to optimize the system.
 
 ```python
 from llmselector.compoundai.optimizer import OptimizerLLMDiagnoser
-LLMSELECTOR = SelfRefine()
+OLLAMASELECTOR = SelfRefine()
 Optimizer = OptimizerLLMDiagnoser()
-Optimizer.optimize( train_df, Metric('em'), LLMSELECTOR)
-results = compute_score({"LLMSELECTOR":LLMSELECTOR}, test_df, Metric('em'))
+Optimizer.optimize( train_df, Metric('em'), OLLAMASELECTOR)
+results = compute_score({"OLLAMASELECTOR":OLLAMASELECTOR}, test_df, Metric('em'))
 print(results)
 ```
 The expected output should be
 
 | Name                     | Mean_Score |
 |--------------------------|------------|
-|  LLMSELECTOR             |   0.954167 |
+|  OLLAMASELECTOR             |   0.954167 |
 
-I.e., LLMSELECTOR offers a notable performance gain (6%) compared to always using any fixed model.
+I.e., OLLAMASELECTOR offers a notable performance gain (6%) compared to always using any fixed model.
 
 #### 📖 More examples (No API key needed)
 
@@ -101,14 +103,14 @@ More examples can be found in ```examples/```.
 
 #### 🌐 Customized systems and tasks (API keys needed)
 
-To use LLMSELECTOR for your own compound AI systems and tasks, it is as easy as creating the systems and tasks and then invoking LLMSELECTOR.
+To use OLLAMASELECTOR for your own compound AI systems and tasks, it is as easy as creating the systems and tasks and then invoking OLLAMASELECTOR.
 
 - Create your system: create the components and pipelines similar to SelfRefine defined in ```compoundai/module/selfrefine```
 
 - Create your task: create a DataLoader object similar to these in ```data_utils```
 
 
-- Invoke LLMSELECTOR: You can simply use LLMSELECTOR by 
+- Invoke OLLAMASELECTOR: You can simply use OLLAMASELECTOR by 
 ```Optimizer.optimize(train_df,Metric('em'),your_compound_system)```
 
 Note that you will need to set up API keys for your own systems. To do so, you can simply use 
@@ -139,7 +141,7 @@ If you are interested in contributing, we would also be happy to coordinate on o
     
 ## 🎯 Reference
 
-If you find LLMSELECTOR useful, we would appreciate if you can please cite our work as follows:
+If you find OLLAMASELECTOR useful, we would appreciate if you can please cite our work as follows:
 
 
 ```
